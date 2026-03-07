@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>8/3</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+overflow-x:hidden;
+background:#ffd6e3 url("https://i.imgur.com/7bK7X9C.png") repeat-x;
+background-size:cover;
+animation:moveBg 25s linear infinite;
+}
+
+@keyframes moveBg{
+0%{background-position:0 0;}
+100%{background-position:-2000px 0;}
+}
+
+/* LOADING */
+
+#loading{
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.progress{
+width:350px;
+height:30px;
+border:3px solid #444;
+border-radius:6px;
+position:relative;
+background:#eee;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:#ff6b81;
+}
+
+.percent{
+position:absolute;
+width:100%;
+text-align:center;
+top:3px;
+font-weight:bold;
+}
+
+/* START */
+
+#startPage{
+display:none;
+text-align:center;
+margin-top:120px;
+}
+
+.loveBar{
+width:300px;
+margin:auto;
+background:#ff7a8a;
+padding:12px;
+border-radius:6px;
+color:white;
+font-weight:bold;
+}
+
+button{
+margin-top:20px;
+padding:10px 25px;
+border:none;
+background:#ff6b81;
+color:white;
+border-radius:20px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* MAIN */
+
+#main{
+display:none;
+text-align:center;
+margin-top:60px;
+}
+
+.card{
+background:#ff6b90;
+color:white;
+width:420px;
+margin:auto;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.title{
+font-family:Pacifico;
+font-size:32px;
+margin-bottom:10px;
+}
+
+.slider img{
+width:170px;
+height:170px;
+object-fit:cover;
+border-radius:10px;
+}
+
+input{
+margin-top:10px;
+padding:8px;
+border-radius:8px;
+border:none;
+}
+
+/* CAR */
+
+.road{
+position:fixed;
+bottom:80px;
+width:100%;
+height:4px;
+background:#5c3d99;
+}
+
+.car{
+position:fixed;
+bottom:50px;
+left:-200px;
+width:160px;
+animation:drive 15s linear infinite;
+z-index: 999;
+}
+
+@keyframes drive{
+0%{left:-200px}
+100%{left:110%}
+}
+
+/* HEART FOLLOW */
+
+.heart{
+position:fixed;
+font-size:14px;
+pointer-events:none;
+animation:float 1s linear forwards;
+}
+
+@keyframes float{
+0%{opacity:1; transform:translateY(0)}
+100%{opacity:0; transform:translateY(-40px)}
+}
+
+/* LETTER */
+
+.letter{
+position:fixed;
+top:-50px;
+font-size:24px;
+animation:fall 5s linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(0) rotate(0)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* MODAL */
+
+#modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+justify-content:center;
+align-items:center;
+}
+
+.popup{
+background:#fff0f5;
+padding:30px;
+border-radius:15px;
+width:400px;
+text-align:center;
+position:relative;
+}
+
+.close{
+position:absolute;
+top:10px;
+right:15px;
+cursor:pointer;
+font-size:20px;
+}
+
+/* MUSIC BUTTON */
+
+.musicBtn{
+position:fixed;
+bottom:120px;
+right:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loading">
+<div class="progress">
+<div class="bar" id="bar"></div>
+<div class="percent" id="percent">0%</div>
+</div>
+<p>Đợi xíu nha bà...</p>
+<img src="https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif" style="width:120px;margin-top:20px;">
+</div>
+
+<!-- START -->
+<div id="startPage">
+<div class="loveBar">vô nha aiu &lt;3</div>
+<button onclick="openMain()">Click đi!</button>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+<div class="card">
+
+<div class="title">Mùng 8/3</div>
+
+<div class="slider">
+<img id="gif" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif">
+</div>
+
+<br>
+
+<input id="pass" placeholder="Nhập mật khẩu để nhận thư">
+
+<br>
+
+<button onclick="sendLetter()">Nhận thư</button>
+
+</div>
+</div>
+
+<div class="road"></div>
+
+<img class="car" src="chuot.png">
+
+<!-- MUSIC BUTTON -->
+<button class="musicBtn" onclick="toggleMusic()">🎵 Music</button>
+
+<!-- MODAL -->
+<div id="modal">
+<div class="popup">
+
+<div class="close" onclick="closeModal()">✖</div>
+
+<h2>Gửi Trân</h2>
+
+<p>
+Chúc bả 8 tháng 3 vui vẻ, luôn gặp điều may mắn, ngày càng hoàn thiện bản thân hơn, với đi xe cẩn thận nha bả 🍀🍀🍀
+</p>
+
+</div>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* LOADING */
+
+let bar=document.getElementById("bar")
+let percent=document.getElementById("percent")
+let load=0
+
+let timer=setInterval(()=>{
+
+load++
+
+bar.style.width=load+"%"
+percent.innerText=load+"%"
+
+if(load>=100){
+
+clearInterval(timer)
+
+document.getElementById("loading").style.display="none"
+
+document.getElementById("startPage").style.display="block"
+
+}
+
+},30)
+
+/* OPEN MAIN */
+
+function openMain(){
+
+document.getElementById("startPage").style.display="none"
+document.getElementById("main").style.display="block"
+
+document.getElementById("bgMusic").play()
+
+}
+
+/* GIF AUTO CHANGE */
+
+let gifs=[
+
+"mouse GIF.gif",
+"Little Mouse GIF.gif",
+"Excuse Me Mouse GIF.gif",
+"Band Mice GIF.gif"
+
+]
+
+let index=0
+
+function changeGif(){
+
+index++
+
+if(index>=gifs.length) index=0
+
+document.getElementById("gif").src=gifs[index]
+
+}
+
+setInterval(changeGif,3000)
+
+/* HEART FOLLOW */
+
+document.addEventListener("mousemove",function(e){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+heart.innerHTML="❤️"
+
+heart.style.left=e.pageX+"px"
+heart.style.top=e.pageY+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),1000)
+
+})
+
+/* CHECK PASSWORD */
+
+function sendLetter(){
+
+let password=document.getElementById("pass").value
+
+if(password!=="Tran83"){
+
+alert("Sai mật khẩu rồi 😝")
+return
+
+}
+
+for(let i=0;i<15;i++){
+
+let letter=document.createElement("div")
+
+letter.className="letter"
+letter.innerHTML="💌"
+
+letter.style.left=Math.random()*100+"%"
+
+document.body.appendChild(letter)
+
+setTimeout(()=>letter.remove(),5000)
+
+}
+
+setTimeout(()=>{
+
+document.getElementById("modal").style.display="flex"
+
+},2000)
+
+}
+
+function closeModal(){
+
+document.getElementById("modal").style.display="none"
+
+}
+
+/* MUSIC CONTROL */
+
+function toggleMusic(){
+
+let music=document.getElementById("bgMusic")
+
+if(music.paused){
+music.play()
+}else{
+music.pause()
+}
+
+}
+
+</script>
+
+</body>
+</html>
