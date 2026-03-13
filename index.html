@@ -1,273 +1,37 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
 <meta charset="UTF-8">
-
-<!-- QUAN TRỌNG CHO MOBILE -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>8/3</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-margin:0;
-font-family:Poppins;
-overflow-x:hidden;
-background:url("background.png");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f2f2f2;
 }
 
-/* LOADING */
-
-#loading{
-height:100vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
+/* khung banner */
+.banner{
+    width:100%;
+    height:80px;
+    background:red;
+    overflow:hidden;
+    position:relative;
 }
 
-.progress{
-width:80%;
-max-width:350px;
-height:30px;
-border:3px solid #444;
-border-radius:6px;
-background:#eee;
-position:relative;
-}
-
-.bar{
-height:100%;
-width:0%;
-background:#ff6b81;
-}
-
-.percent{
-position:absolute;
-width:100%;
-text-align:center;
-top:3px;
-font-weight:bold;
-}
-
-/* START */
-
-#startPage{
-display:none;
-text-align:center;
-margin-top:120px;
-}
-
-.loveBar{
-width:80%;
-max-width:300px;
-margin:auto;
-background:#ff7a8a;
-padding:12px;
-border-radius:6px;
-color:white;
-font-weight:bold;
-}
-
-/* BUTTON */
-
-button{
-margin-top:20px;
-padding:12px 28px;
-border:none;
-background:#ff6b81;
-color:white;
-border-radius:20px;
-cursor:pointer;
-transition:0.3s;
-font-size:16px;
-}
-
-button:hover{
-transform:scale(1.08);
-}
-
-/* MAIN */
-
-#main{
-display:none;
-text-align:center;
-margin-top:50px;
-padding:15px;
-}
-
-/* CARD */
-
-.card{
-background:#ff6b90;
-color:white;
-width:90%;
-max-width:420px;
-margin:auto;
-padding:20px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-/* TITLE */
-
-.title{
-font-family:Pacifico;
-font-size:32px;
-margin-bottom:10px;
-}
-
-/* GIF */
-
-.slider img{
-width:60%;
-max-width:170px;
-border-radius:10px;
-}
-
-/* INPUT */
-
-input{
-margin-top:10px;
-padding:10px;
-border-radius:8px;
-border:none;
-width:80%;
-max-width:250px;
-}
-
-/* ROAD */
-
-.road{
-position:fixed;
-bottom:70px;
-width:100%;
-height:4px;
-background:#5c3d99;
-}
-
-/* CAR */
-
-.car{
-position:fixed;
-bottom:40px;
-left:-200px;
-width:120px;
-animation:drive 15s linear infinite;
-}
-
-@keyframes drive{
-0%{left:-200px}
-100%{left:110%}
-}
-
-/* HEART */
-
-.heart{
-position:fixed;
-font-size:14px;
-pointer-events:none;
-animation:float 1s linear forwards;
-}
-
-@keyframes float{
-0%{opacity:1; transform:translateY(0)}
-100%{opacity:0; transform:translateY(-40px)}
-}
-
-/* LETTER */
-
-.letter{
-position:fixed;
-top:-50px;
-font-size:24px;
-animation:fall 5s linear forwards;
-}
-
-@keyframes fall{
-0%{transform:translateY(0) rotate(0)}
-100%{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* MODAL */
-
-#modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.popup{
-background:#fff0f5;
-padding:25px;
-border-radius:15px;
-width:90%;
-max-width:400px;
-text-align:center;
-position:relative;
-}
-
-.close{
-position:absolute;
-top:10px;
-right:15px;
-cursor:pointer;
-font-size:20px;
-}
-
-/* MUSIC BUTTON */
-
-.musicBtn{
-position:fixed;
-bottom:110px;
-right:15px;
-font-size:14px;
-padding:10px 16px;
-}
-
-/* MOBILE */
-
-@media(max-width:500px){
-.popup{
-width:80%;
-max-width:320px;
-padding:20px;
-}
-
-.popup h2{
-font-size:20px;
-}
-
-.popup p{
-font-size:14px;
-}
-.title{
-font-size:26px;
-}
-
-button{
-font-size:14px;
-}
-
-.car{
-width:90px;
-}
-
+/* chữ chạy */
+.text{
+    position:absolute;
+    white-space:nowrap;
+    font-size:35px;
+    color:white;
+    font-weight:bold;
+    left:100%;
 }
 
 </style>
@@ -275,193 +39,26 @@ width:90px;
 
 <body>
 
-<div id="loading">
-
-<div class="progress">
-<div class="bar" id="bar"></div>
-<div class="percent" id="percent">0%</div>
+<div class="banner">
+    <div class="text" id="text">BẠN RẢNH CHƯA</div>
 </div>
-
-<p>Đợi xíu nha bà...</p>
-
-</div>
-
-<div id="startPage">
-
-<div class="loveBar">vô nha aiu &lt;3</div>
-
-<button onclick="openMain()">Click đi!</button>
-
-</div>
-
-<div id="main">
-
-<div class="card">
-
-<div class="title">Mùng 8/3</div>
-
-<div class="slider">
-<img id="gif" src="mouse GIF.gif">
-</div>
-
-<br>
-
-<input id="pass" placeholder="Nhập mật khẩu để nhận thư">
-
-<br>
-
-<button onclick="sendLetter()">Nhận thư</button>
-
-</div>
-
-</div>
-
-<div class="road"></div>
-
-<img class="car" src="chuot.png">
-
-<button class="musicBtn" onclick="toggleMusic()">🎵 Music</button>
-
-<div id="modal">
-
-<div class="popup">
-
-<div class="close" onclick="closeModal()">✖</div>
-
-<h2>Gửi Trân</h2>
-
-<p>
-Chúc bả 8 tháng 3 vui vẻ, luôn gặp điều may mắn, ngày càng hoàn thiện bản thân hơn, với đi xe cẩn thận nha bả 🍀🍀🍀
-</p>
-
-</div>
-
-</div>
-
-<audio id="bgMusic" loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 
-let bar=document.getElementById("bar")
-let percent=document.getElementById("percent")
-let load=0
+let text = document.getElementById("text");
+let position = window.innerWidth;
 
-let timer=setInterval(()=>{
+function run(){
+    position -= 2;
 
-load++
+    if(position < -text.offsetWidth){
+        position = window.innerWidth;
+    }
 
-bar.style.width=load+"%"
-percent.innerText=load+"%"
-
-if(load>=100){
-
-clearInterval(timer)
-
-loading.style.display="none"
-startPage.style.display="block"
-
+    text.style.left = position + "px";
 }
 
-},30)
-
-function openMain(){
-
-startPage.style.display="none"
-main.style.display="block"
-
-document.getElementById("bgMusic").play()
-
-}
-
-let gifs=[
-
-"mouse GIF.gif",
-"Little Mouse GIF.gif",
-
-
-]
-
-let index=0
-
-setInterval(()=>{
-
-index++
-
-if(index>=gifs.length) index=0
-
-gif.src=gifs[index]
-
-},3000)
-
-document.addEventListener("mousemove",function(e){
-
-let heart=document.createElement("div")
-
-heart.className="heart"
-heart.innerHTML="❤️"
-
-heart.style.left=e.pageX+"px"
-heart.style.top=e.pageY+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>heart.remove(),1000)
-
-})
-
-function sendLetter(){
-
-let password=document.getElementById("pass").value
-
-if(password!=="Tran83"){
-
-alert("Sai mật khẩu rồi 😝")
-return
-
-}
-
-for(let i=0;i<15;i++){
-
-let letter=document.createElement("div")
-
-letter.className="letter"
-letter.innerHTML="💌"
-
-letter.style.left=Math.random()*100+"%"
-
-document.body.appendChild(letter)
-
-setTimeout(()=>letter.remove(),5000)
-
-}
-
-setTimeout(()=>{
-
-modal.style.display="flex"
-
-},2000)
-
-}
-
-function closeModal(){
-
-modal.style.display="none"
-
-}
-
-function toggleMusic(){
-
-let music=document.getElementById("bgMusic")
-
-if(music.paused){
-music.play()
-}else{
-music.pause()
-}
-
-}
+setInterval(run,20);
 
 </script>
 
